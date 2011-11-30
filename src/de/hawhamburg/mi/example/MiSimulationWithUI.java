@@ -33,7 +33,7 @@ public class MiSimulationWithUI extends GUIState {
 	}
 
 	public static String getName() {
-		return "Student Schoolyard Cliques";
+		return "MI Wohlfühl und Gefahrensimulation";
 	}
 
 	public void start() {
@@ -63,7 +63,7 @@ public class MiSimulationWithUI extends GUIState {
 		display = new Display2D(600, 600, this);
 		display.setClipping(false);
 		displayFrame = display.createFrame();
-		displayFrame.setTitle("Schoolyard Display");
+		displayFrame.setTitle("MI Simulation");
 		c.registerFrame(displayFrame); // so the frame appears in the "Display"
 										// list
 		displayFrame.setVisible(true);
