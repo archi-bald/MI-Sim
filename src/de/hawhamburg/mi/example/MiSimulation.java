@@ -1,4 +1,4 @@
-package de.hawhamburg.mi;
+package de.hawhamburg.mi.example;
 
 import sim.engine.SimState;
 import sim.field.continuous.Continuous2D;

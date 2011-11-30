@@ -1,4 +1,4 @@
-package de.hawhamburg.mi;
+package de.hawhamburg.mi.example;
 
 import java.awt.Color;
 
