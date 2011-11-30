@@ -1,4 +1,4 @@
-package model.common;
+package de.hawhamburg.mi.model.common;
 
 /**
  * A WorldObject is basically everything with a spacial representation in the simulation.

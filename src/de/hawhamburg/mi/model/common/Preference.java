@@ -3,7 +3,7 @@
  * The attributes intensity (value) * the preference's sensibility influence the agent.
  * 
  */
-package model.common;
+package de.hawhamburg.mi.model.common;
 
 /**
  * @author pascal

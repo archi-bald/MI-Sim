@@ -1,6 +1,6 @@
-package model.attributes;
+package de.hawhamburg.mi.model.attributes;
 
-import model.common.Attribute;
+import de.hawhamburg.mi.model.common.Attribute;
 
 /**
  * This Attribute has a positive effect on the stresslevel of an agent, by reducing the stress level.

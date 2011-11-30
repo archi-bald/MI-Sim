@@ -1,4 +1,4 @@
-package model.common;
+package de.hawhamburg.mi.model.common;
 
 /**
  * A DynamicTarget has no representation in space and is only available during a predefined time.

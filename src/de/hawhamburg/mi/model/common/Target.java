@@ -1,4 +1,4 @@
-package model.common;
+package de.hawhamburg.mi.model.common;
 
 /**
  * A Target is a place at which an agents leaves the simulation for a defined time when 

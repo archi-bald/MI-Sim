@@ -1,4 +1,4 @@
-package model.common;
+package de.hawhamburg.mi.model.common;
 
 /**
  * An Attribute something by which an object A (with this Attribute) can influence the state 
