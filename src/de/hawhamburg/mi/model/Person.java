@@ -6,10 +6,22 @@ import sim.field.continuous.Continuous2D;
 import sim.util.Double2D;
 import sim.util.MutableDouble2D;
 import de.hawhamburg.mi.control.MiSimulation;
+import de.hawhamburg.mi.model.common.DynamicEntity;
 
-public class Person implements Steppable {
-	public void step(SimState state) {
-		MiSimulation miSimulation = (MiSimulation) state;
+/**
+ * The agent implementation
+ * 
+ * 
+ *
+ */
+public class Person extends DynamicEntity implements Steppable{
+	
+	public Person(SimState state) {
+		super(state);
+		// TODO Auto-generated constructor stub
+	}
+
+	public void step(SimState state) {		
 		Continuous2D yard = miSimulation.world;
 		Double2D me = miSimulation.world.getObjectLocation(this);
 		MutableDouble2D sumForces = new MutableDouble2D();
