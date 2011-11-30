@@ -6,8 +6,8 @@ import sim.util.Double2D;
 import de.hawhamburg.mi.model.Person;
 
 public class MiSimulation extends SimState {
-	public Continuous2D yard = new Continuous2D(1.0, 100, 100);
-	public int numStudents = 50;
+	public Continuous2D world = new Continuous2D(1.0, 100, 100);
+	public int numPeople = 50;
 	public double forceToSchoolMultiplier = 0.01;
 	public double randomMultiplier = 0.1;
 	
@@ -23,12 +23,12 @@ public class MiSimulation extends SimState {
 	public void start() {
 		super.start();
 		// clear the yard
-		yard.clear();
+		world.clear();
 		// add some students to the yard
-		for (int i = 0; i < numStudents; i++) {
+		for (int i = 0; i < numPeople; i++) {
 			Person person = new Person();
-			yard.setObjectLocation(person, new Double2D(yard.getWidth() * 0.5
-					+ random.nextDouble() - 0.5, yard.getHeight() * 0.5
+			world.setObjectLocation(person, new Double2D(world.getWidth() * 0.5
+					+ random.nextDouble() - 0.5, world.getHeight() * 0.5
 					+ random.nextDouble() - 0.5));
 			schedule.scheduleRepeating(person);
 		}

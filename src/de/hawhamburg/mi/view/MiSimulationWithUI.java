@@ -17,7 +17,7 @@ public class MiSimulationWithUI extends GUIState {
 
 	public Display2D display;
 	public JFrame displayFrame;
-	ContinuousPortrayal2D yardPortrayal = new ContinuousPortrayal2D();
+	ContinuousPortrayal2D worldPortrayal = new ContinuousPortrayal2D();
 
 	public static void main(String[] args) {
 		MiSimulationWithUI vid = new MiSimulationWithUI();
@@ -50,8 +50,8 @@ public class MiSimulationWithUI extends GUIState {
 	public void setupPortrayals() {
 		MiSimulation students = (MiSimulation) state;
 		// tell the portrayals what to portray and how to portray them
-		yardPortrayal.setField(students.yard);
-		yardPortrayal.setPortrayalForAll(new OvalPortrayal2D());
+		worldPortrayal.setField(students.world);
+		worldPortrayal.setPortrayalForAll(new OvalPortrayal2D());
 		// reschedule the displayer
 		display.reset();
 		display.setBackdrop(Color.white);
@@ -68,7 +68,7 @@ public class MiSimulationWithUI extends GUIState {
 		c.registerFrame(displayFrame); // so the frame appears in the "Display"
 										// list
 		displayFrame.setVisible(true);
-		display.attach(yardPortrayal, "World");
+		display.attach(worldPortrayal, "World");
 	}
 
 	public void quit() {
