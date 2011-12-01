@@ -2,10 +2,11 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="mason/jar/mason.16.jar">
+	<classpathentry exported="true" kind="lib" path="mason/jar/mason.16.jar">
 		<attributes>
-			<attribute name="javadoc_location" value="jar:platform:/resource/MI/mason/docs.zip!/docs/classdocs"/>
+			<attribute name="javadoc_location" value="file:/Users/Pascal/MI-Sim/mason/docs/classdocs/"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="lib/log4j-1.2.16.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

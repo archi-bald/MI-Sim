@@ -6,6 +6,14 @@ import sim.util.Double2D;
 import de.hawhamburg.mi.model.Person;
 
 public class MiSimulation extends SimState {
+	
+	/*
+	 * @author Pascal
+	 * Hier hängt dann der Map-Layer von Markus drin.
+	 * Targets werde in einer separaten Liste auch hier festgehalten?!
+	 */
+	
+	
 	public Continuous2D world = new Continuous2D(1.0, 100, 100);
 	public int numPeople = 50;
 	public double forceToSchoolMultiplier = 0.01;
