@@ -26,7 +26,7 @@ public class MiSimulation extends SimState {
 		world.clear();
 		// add some students to the yard
 		for (int i = 0; i < numPeople; i++) {
-			Person person = new Person();
+			Person person = new Person(this);
 			world.setObjectLocation(person, new Double2D(world.getWidth() * 0.5
 					+ random.nextDouble() - 0.5, world.getHeight() * 0.5
 					+ random.nextDouble() - 0.5));
