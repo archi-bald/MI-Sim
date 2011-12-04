@@ -4,12 +4,14 @@ import sim.engine.SimState;
 import sim.field.continuous.Continuous2D;
 import sim.util.Double2D;
 import de.hawhamburg.mi.model.Person;
+import de.hawhamburg.mi.model.common.overlay.Map;
 
 public class MiSimulation extends SimState {
 	public Continuous2D yard = new Continuous2D(1.0, 100, 100);
 	public int numStudents = 50;
 	double forceToSchoolMultiplier = 0.01;
 	double randomMultiplier = 0.1;
+	public static Map mapLayer = new Map(100, 100);
 	
 	public MiSimulation(long seed) {
 		super(seed);
