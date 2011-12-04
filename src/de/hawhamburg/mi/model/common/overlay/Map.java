@@ -90,7 +90,7 @@ public class Map {
 	 */
 	public ArrayList<SimObjects> getObjects360Grad(Position pos) {
 		if (pos.getX() <= mapWidth && pos.getY() <= mapHeight) {
-			ArrayList<SimObjects> ret = new ArrayList<>(8);
+			ArrayList<SimObjects> ret = new ArrayList<SimObjects>(8);
 
 			ArrayList<SimObjects> row1 = objectSpace.get(pos.getY() - 1);
 			ArrayList<SimObjects> row2 = objectSpace.get(pos.getY());

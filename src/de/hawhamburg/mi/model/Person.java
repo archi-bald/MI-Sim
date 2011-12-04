@@ -83,7 +83,7 @@ public class Person extends DynamicEntity implements Steppable{
 	 * for further analysis.
 	 */
 	private void sense(){
-		// ArrayList<Influence> influences = miSimulation.mapLayer.getInfluences(myPosition);
+		ArrayList<Influence> influences = miSimulation.mapLayer.getInfluences(myPosition);
 		
 	}
 	
