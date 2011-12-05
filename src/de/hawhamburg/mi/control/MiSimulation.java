@@ -4,6 +4,7 @@ import sim.engine.SimState;
 import sim.field.continuous.Continuous2D;
 import sim.util.Double2D;
 import de.hawhamburg.mi.model.Person;
+import de.hawhamburg.mi.model.common.overlay.Map;
 
 public class MiSimulation extends SimState {
 	
@@ -12,7 +13,7 @@ public class MiSimulation extends SimState {
 	 * Hier hängt dann der Map-Layer von Markus drin.
 	 * Targets werde in einer separaten Liste auch hier festgehalten?!
 	 */
-	
+	public static Map overlay = new Map(100, 100);
 	
 	public Continuous2D world = new Continuous2D(1.0, 100, 100);
 	public int numPeople = 50;

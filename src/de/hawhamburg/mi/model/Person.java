@@ -19,6 +19,7 @@ import de.hawhamburg.mi.model.common.DynamicEntity;
 import de.hawhamburg.mi.model.common.Influences;
 import de.hawhamburg.mi.model.common.Position;
 import de.hawhamburg.mi.model.common.Target;
+import de.hawhamburg.mi.model.common.overlay.Intensity;
 
 /**
  * The agent implementation
@@ -37,7 +38,8 @@ public class Person extends DynamicEntity implements Steppable{
 	/* 
 	 * ALREADY DEFINED VARIABLES 
 	 */
-	private Double2D myPosition;	// current position in simulation world
+	private Position myPosition;	// current position in simulation world
+	private Target myTarget; 		// the target the agent is heading to
 	private Logger log = Logger.getRootLogger();
 	private ArrayList<SenseObject> senseList = new ArrayList<SenseObject>();
 	private SenseHistory senseHistory = new SenseHistory();
@@ -47,9 +49,11 @@ public class Person extends DynamicEntity implements Steppable{
 		// TODO Auto-generated constructor stub
 	}
 
-	public void step(SimState state) {		
+	public void step(SimState state) {	
 		
-		myPosition = miSimulation.world.getObjectLocation(this);
+		// get current position from SimulationWorld
+		Double2D worldPos = miSimulation.world.getObjectLocation(this); 
+		myPosition = Position.newPosition( (int) worldPos.x, (int) worldPos.y);
 		// TODO: calculate internal state and further actions
 	}
 	
@@ -58,7 +62,7 @@ public class Person extends DynamicEntity implements Steppable{
 	 */
 	private Target drawTarget(){
 		// TODO: draw target
-		return null;
+		return myTarget;
 	}
 	
 	/**
@@ -84,7 +88,7 @@ public class Person extends DynamicEntity implements Steppable{
 	 * for further analysis.
 	 */
 	private void sense(){
-		ArrayList<Influences> influences = miSimulation.mapLayer.getInfluences(myPosition);
+		HashMap<Influences, Intensity> influences = miSimulation.overlay.getInfluences(myPosition);
 		
 	}
 	
