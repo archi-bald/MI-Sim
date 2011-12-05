@@ -50,13 +50,14 @@ public class Person extends DynamicEntity implements Steppable{
 	public void step(SimState state) {		
 		
 		myPosition = miSimulation.world.getObjectLocation(this);
-		
+		// TODO: calculate internal state and further actions
 	}
 	
 	/**
 	 * Requests all targets from SimStateObject and randomly selects a target 
 	 */
 	private Target drawTarget(){
+		// TODO: draw target
 		return null;
 	}
 	
