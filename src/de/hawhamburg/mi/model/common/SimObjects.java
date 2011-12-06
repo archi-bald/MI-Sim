@@ -11,5 +11,10 @@ public enum SimObjects {
 	/**
 	 * An der entsprechendne Stelle befindet sich nichts.
 	 */
-	NOTHING
+	NOTHING,
+	
+	/**
+	 *  Quellen und Senken 
+	 */
+	SOURCE, TARGET,
 }
