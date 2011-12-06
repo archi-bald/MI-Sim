@@ -89,21 +89,38 @@ public class Person extends DynamicEntity implements Steppable{
 	 */
 	private void sense(){
 		HashMap<Influences, Intensity> influences = miSimulation.overlay.getInfluences(myPosition);
-		
+		SenseObject sensO = new SenseObject(myPosition, influences);
+		senseHistory.addSensation(sensO);
 	}
 	
 	/**
 	 * 
 	 * @author Pascal
 	 *
-	 * Currently local, we'll see where it gets us to.
+	 * Currently a local class, we'll see where it gets us to.
+	 * 
+	 * 
 	 */
 	private class SenseObject{
 		private Position pos;
+		HashMap<Influences, Intensity> sensed;
+		
+		public SenseObject(Position pos, HashMap<Influences, Intensity> senses){
+			this.pos = pos;
+			sensed = senses;
+		}
 		
 		
 	}
 
+	/**
+	 * 
+	 * SenseHistory keeps track of how the intensity changes along the routes an agents walks
+	 * so we can perform analysis on this.
+	 * 
+	 * @author Pascal
+	 *
+	 */
 	private class SenseHistory{
 		int moves; // the number of moves the agent has made
 		HashMap<Influences, Integer> sensedInfluences = 
