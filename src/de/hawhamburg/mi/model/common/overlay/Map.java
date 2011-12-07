@@ -13,7 +13,7 @@ import de.hawhamburg.mi.model.common.SimObjects;
  * @author Markus
  * 
  */
-public class Map {
+public class Map implements IMapInitialisation {
 	/**
 	 * 2D ArrayList der Influences in der Simulation
 	 */
@@ -42,24 +42,24 @@ public class Map {
 	public Map(Integer height, Integer width) {
 		// InfluenceSpace initialisieren
 		ArrayList<HashMap<Influences, Intensity>> ArrList1;
-		for (int count2 = 0; count2 <= width; count2++) {
+		for (int count2 = 0; count2 <= height; count2++) {
 			ArrList1 = new ArrayList<HashMap<Influences, Intensity>>();
-			for (int count1 = 0; count1 <= height; count1++) {
+			for (int count1 = 0; count1 <= width; count1++) {
 				ArrList1.add(new HashMap<Influences, Intensity>());
 			}
 			influenceSpace.add(ArrList1);
 		}
-		
+
 		// ObjectSpace initialisieren
 		ArrayList<SimObjects> ArrList2;
-		for (int count2 = 0; count2 <= width; count2++) {
+		for (int count2 = 0; count2 <= height; count2++) {
 			ArrList2 = new ArrayList<SimObjects>();
-			for (int count1 = 0; count1 <= height; count1++) {
+			for (int count1 = 0; count1 <= width; count1++) {
 				ArrList2.add(SimObjects.NOTHING);
 			}
 			objectSpace.add(ArrList2);
 		}
-		
+
 		// Objektvariablen
 		mapHeight = height;
 		mapWidth = width;
@@ -73,10 +73,8 @@ public class Map {
 	 * @return Influence, Intensity - HashMap
 	 */
 	public HashMap<Influences, Intensity> getInfluences(Position pos) {
-		if (pos.getX() <= mapWidth && pos.getY() <= mapHeight) {
-			return influenceSpace.get(pos.getY()).get(pos.getX());
-		}
-		throw new IllegalArgumentException("Position out of Map bounds.");
+		notOutOfBoundsCheck(pos);
+		return influenceSpace.get(pos.getY()).get(pos.getX());
 	}
 
 	/**
@@ -89,7 +87,7 @@ public class Map {
 	 * @return Influence, Intensity - HashMap
 	 */
 	public ArrayList<SimObjects> getObjects360Grad(Position pos) {
-		if (pos.getX() <= mapWidth && pos.getY() <= mapHeight) {
+		if (notOutOfBoundsCheck(pos)) {
 			ArrayList<SimObjects> ret = new ArrayList<SimObjects>(8);
 
 			ArrayList<SimObjects> row1 = objectSpace.get(pos.getY() - 1);
@@ -107,6 +105,39 @@ public class Map {
 
 			return ret;
 		}
-		throw new IllegalArgumentException("Position out of Map bounds.");
+		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see de.hawhamburg.mi.model.common.overlay.IMapInitialisation#addSimObject(de.hawhamburg.mi.model.common.Position, de.hawhamburg.mi.model.common.SimObjects)
+	 */
+	@Override
+	public boolean addSimObject(Position pos, SimObjects simObj) {
+		if (pos == null || simObj == null) {
+			throw new IllegalArgumentException(
+					"Position and SimObjects must not be null.");
+		}
+		notOutOfBoundsCheck(pos);
+		objectSpace.get(pos.getY()).set(pos.getX(), simObj);
+
+		// TODO: Influence Map pflegen
+
+		return true;
+	}
+
+	/**
+	 * Prüft das PositionsObjekt nicht ausserhalb der initialen Grenzen liegt.
+	 * 
+	 * @param pos
+	 *            Position
+	 * @throws IllegalArgumentException
+	 *             Wenn out-of-Bounds
+	 * @return true wenn alles Ok
+	 */
+	private boolean notOutOfBoundsCheck(Position pos) {
+		if (!(pos.getX() <= mapWidth && pos.getY() <= mapHeight)) {
+			throw new IndexOutOfBoundsException("Position out of Map bounds.");
+		}
+		return true;
 	}
 }
