@@ -23,9 +23,8 @@ public class Intensity {
 	}
 
 	/**
-	 * Default Constructor private setzen um nur eingeschränkten Wertebereich
+	 * Default Konstruktor private setzen um nur eingeschränkten Wertebereich
 	 * zuzulassen.
-	 * 
 	 */
 	private Intensity() {
 	}
@@ -45,7 +44,7 @@ public class Intensity {
 	 * @param i
 	 */
 	public void setValue(Integer i) {
-		if (i < 9 && i >= 0) {
+		if (i <= 7 && i >= 0) {
 			value = new Integer(i);
 		}
 		throw new IllegalArgumentException(

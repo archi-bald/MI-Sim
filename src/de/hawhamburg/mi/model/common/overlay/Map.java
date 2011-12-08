@@ -67,14 +67,7 @@ public class Map implements IMapInitialisation, IMapUse {
 		mapWidth = width;
 	}
 
-	
-	/**
-	 * Gibt eine HashMap von Influences zurück, die an einem Punkt <b>pos</b>
-	 * auf einen dynamisches Objekt einwirken.
-	 * 
-	 * @param pos
-	 * @return Influence, Intensity - HashMap
-	 */
+	@Override
 	public HashMap<Influences, Intensity> getInfluences(Position pos) {
 		notOutOfBoundsCheck(pos);
 		return influenceSpace.get(pos.getY()).get(pos.getX());
@@ -88,7 +81,7 @@ public class Map implements IMapInitialisation, IMapUse {
 			ArrayList<SimObjects> row1 = objectSpace.get(pos.getY() - 1);
 			ArrayList<SimObjects> row2 = objectSpace.get(pos.getY());
 			ArrayList<SimObjects> row3 = objectSpace.get(pos.getY() + 1);
-			
+
 			// TODO: Randbereiche beachten und Nothing zurückgeben
 			ret.add(row1.get(pos.getX() - 1));
 			ret.add(row1.get(pos.getX()));
@@ -104,8 +97,13 @@ public class Map implements IMapInitialisation, IMapUse {
 		return null;
 	}
 
-	/* (non-Javadoc)
-	 * @see de.hawhamburg.mi.model.common.overlay.IMapInitialisation#addSimObject(de.hawhamburg.mi.model.common.Position, de.hawhamburg.mi.model.common.SimObjects)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * de.hawhamburg.mi.model.common.overlay.IMapInitialisation#addSimObject
+	 * (de.hawhamburg.mi.model.common.Position,
+	 * de.hawhamburg.mi.model.common.SimObjects)
 	 */
 	@Override
 	public boolean addSimObject(Position pos, SimObjects simObj) {
@@ -135,12 +133,5 @@ public class Map implements IMapInitialisation, IMapUse {
 			throw new IndexOutOfBoundsException("Position out of Map bounds.");
 		}
 		return true;
-	}
-
-
-	@Override
-	public HashMap<Influences, Intensity> getInfluence(Position pos) {
-		// TODO: Influences an einer bestimmten Position zurückgeben.
-		return null;
 	}
 }

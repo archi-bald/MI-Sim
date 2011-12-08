@@ -2,7 +2,6 @@ package de.hawhamburg.mi.model.common.overlay;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-
 import de.hawhamburg.mi.model.common.Influences;
 import de.hawhamburg.mi.model.common.Position;
 import de.hawhamburg.mi.model.common.SimObjects;
@@ -34,6 +33,6 @@ public interface IMapUse {
 	 *            Position für die die Influences zurückgegeben werden sollen.
 	 * @return HashMap<Influences, Intensity>
 	 */
-	public HashMap<Influences, Intensity> getInfluence(Position pos);
+	public HashMap<Influences, Intensity> getInfluences(Position pos);
 
 }
