@@ -12,4 +12,9 @@ package de.hawhamburg.mi.model.common;
  */
 public abstract class Target {
 
+	Position pos;
+	
+	public Position getPosition(){
+		return pos;
+	}
 }

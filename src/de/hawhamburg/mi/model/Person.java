@@ -4,17 +4,17 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map.Entry;
+import java.util.Random;
 
 import org.apache.log4j.Logger;
 
-import com.sun.tools.javac.util.Pair;
-
 import sim.engine.SimState;
 import sim.engine.Steppable;
-import sim.field.continuous.Continuous2D;
 import sim.util.Double2D;
 import sim.util.MutableDouble2D;
-import de.hawhamburg.mi.control.MiSimulation;
+
+import com.sun.tools.javac.util.Pair;
+
 import de.hawhamburg.mi.model.common.DynamicEntity;
 import de.hawhamburg.mi.model.common.Influences;
 import de.hawhamburg.mi.model.common.Position;
@@ -32,36 +32,46 @@ public class Person extends DynamicEntity implements Steppable{
 	/* 
 	 * UPCOMING VARIABLES
 	 */ 
-	 ArrayList<Object> path; 		// das aus der Wegfindung zurückgelieferte Path-Objekt
+	 ArrayList<Position> path; 		// das aus der Wegfindung zurückgelieferte Path-Objekt
 	 
 	 
 	/* 
 	 * ALREADY DEFINED VARIABLES 
 	 */
-	private Position myPosition;	// current position in simulation world
-	private Target myTarget; 		// the target the agent is heading to
+	private Position myPosition = null;	// current position in simulation world
+	private Target myTarget = null; 		// the target the agent is heading to
 	private Logger log = Logger.getRootLogger();
 	private ArrayList<SenseObject> senseList = new ArrayList<SenseObject>();
 	private SenseHistory senseHistory = new SenseHistory();
 	
 	public Person(SimState state) {
 		super(state);
-		// TODO Auto-generated constructor stub
-	}
-
-	public void step(SimState state) {	
-		
-		// get current position from SimulationWorld
+		myTarget = drawTarget();
 		Double2D worldPos = miSimulation.world.getObjectLocation(this); 
 		myPosition = Position.newPosition( (int) worldPos.x, (int) worldPos.y);
-		// TODO: calculate internal state and further actions
+	}
+
+	public void step(SimState state) {
+		
+		// check if agent has target
+		if(myTarget == null){ // draw new target
+			myTarget = drawTarget();
+		} else if (myTarget.getPosition() == myPosition) { // check ob target erreicht ist
+			// TODO: Was passiert, wenn Agent ein Target erreicht?
+		} else {
+			move();
+		}
 	}
 	
 	/**
 	 * Requests all targets from SimStateObject and randomly selects a target 
 	 */
 	private Target drawTarget(){
-		// TODO: draw target
+		ArrayList<Target> targets = miSimulation.targetList;
+		Random rand = new Random();
+		float factor = rand.nextFloat();
+		int pos = (int) (factor * targets.size());
+		myTarget = targets.get(pos);
 		return myTarget;
 	}
 	
@@ -71,14 +81,14 @@ public class Person extends DynamicEntity implements Steppable{
 	 * Removes the first element from the path as long as path is not empty
 	 */
 	private void move(){
-		MutableDouble2D nextWorldPosition = new MutableDouble2D();
+		Double2D nextStepInPath = null;
 		try{
-			Object nextStepInPath = path.remove(0);
+			Position pos = path.remove(0);
+			nextStepInPath = new Double2D(pos.getX(),pos.getY());
+			miSimulation.world.setObjectLocation(this, nextStepInPath);
 		} catch (IndexOutOfBoundsException e) {
 			 log.debug("Path is empty in Person.move");
-		}
-		// ggf. umrechnung von PathIndices in WorldKoordinaten
-		miSimulation.world.setObjectLocation(this, new Double2D(nextWorldPosition));
+		}		
 	}
 	
 	/**

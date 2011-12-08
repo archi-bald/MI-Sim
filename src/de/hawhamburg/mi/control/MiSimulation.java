@@ -1,9 +1,12 @@
 package de.hawhamburg.mi.control;
 
+import java.util.ArrayList;
+
 import sim.engine.SimState;
 import sim.field.continuous.Continuous2D;
 import sim.util.Double2D;
 import de.hawhamburg.mi.model.Person;
+import de.hawhamburg.mi.model.common.Target;
 import de.hawhamburg.mi.model.common.overlay.Map;
 
 public class MiSimulation extends SimState {
@@ -14,6 +17,8 @@ public class MiSimulation extends SimState {
 	 * Targets werde in einer separaten Liste auch hier festgehalten?!
 	 */
 	public static Map overlay = new Map(100, 100);
+	public static Pathfinder pathfinder = new Pathfinder();
+	public static ArrayList<Target> targetList;
 	
 	public Continuous2D world = new Continuous2D(1.0, 100, 100);
 	public int numPeople = 50;
