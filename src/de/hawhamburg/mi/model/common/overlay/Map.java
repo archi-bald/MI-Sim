@@ -7,13 +7,15 @@ import de.hawhamburg.mi.model.common.Influences;
 import de.hawhamburg.mi.model.common.Position;
 import de.hawhamburg.mi.model.common.SimObjects;
 
+// TODO: Quellen - Ziele zurückgeben
+// TODO: Eindimensionale Arraylist verwenden
 /**
  * Klasse die das Overlay, die statischen Objekte der Simulation enthält.
  * 
  * @author Markus
  * 
  */
-public class Map implements IMapInitialisation {
+public class Map implements IMapInitialisation, IMapUse {
 	/**
 	 * 2D ArrayList der Influences in der Simulation
 	 */
@@ -65,6 +67,7 @@ public class Map implements IMapInitialisation {
 		mapWidth = width;
 	}
 
+	
 	/**
 	 * Gibt eine HashMap von Influences zurück, die an einem Punkt <b>pos</b>
 	 * auf einen dynamisches Objekt einwirken.
@@ -77,15 +80,7 @@ public class Map implements IMapInitialisation {
 		return influenceSpace.get(pos.getY()).get(pos.getX());
 	}
 
-	/**
-	 * Gibt eine ArrayList von HashMaps zurück, die um einem Punkt <b>pos</b>
-	 * auf einen dynamisches Objekt einwirken.</br> Die Elemente liegen im
-	 * Uhrzeigersinn in der ArrayList. Das erste Element ist das Element mit dem
-	 * geringsten x und y Werten (Oben Links).
-	 * 
-	 * @param pos
-	 * @return Influence, Intensity - HashMap
-	 */
+	@Override
 	public ArrayList<SimObjects> getObjects360Grad(Position pos) {
 		if (notOutOfBoundsCheck(pos)) {
 			ArrayList<SimObjects> ret = new ArrayList<SimObjects>(8);
@@ -93,7 +88,8 @@ public class Map implements IMapInitialisation {
 			ArrayList<SimObjects> row1 = objectSpace.get(pos.getY() - 1);
 			ArrayList<SimObjects> row2 = objectSpace.get(pos.getY());
 			ArrayList<SimObjects> row3 = objectSpace.get(pos.getY() + 1);
-
+			
+			// TODO: Randbereiche beachten und Nothing zurückgeben
 			ret.add(row1.get(pos.getX() - 1));
 			ret.add(row1.get(pos.getX()));
 			ret.add(row1.get(pos.getX() + 1));
@@ -139,5 +135,12 @@ public class Map implements IMapInitialisation {
 			throw new IndexOutOfBoundsException("Position out of Map bounds.");
 		}
 		return true;
+	}
+
+
+	@Override
+	public HashMap<Influences, Intensity> getInfluence(Position pos) {
+		// TODO: Influences an einer bestimmten Position zurückgeben.
+		return null;
 	}
 }

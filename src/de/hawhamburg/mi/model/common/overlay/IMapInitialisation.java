@@ -21,5 +21,4 @@ public interface IMapInitialisation {
 	 * @return true wenn eingefügt sonst false
 	 */
 	public boolean addSimObject(Position pos, SimObjects simObj);
-
 }

@@ -9,12 +9,12 @@ package de.hawhamburg.mi.model.common;
 public enum SimObjects {
 	TREE, STREET, LAWN, SIDEWALK, BUILDING,
 	/**
-	 * An der entsprechendne Stelle befindet sich nichts.
+	 * An der entsprechendne Stelle befindet sich nichts. Verwendet in Randbereichen.
 	 */
 	NOTHING,
 	
 	/**
-	 *  Quellen und Senken 
+	 *  Quellen und Senken
 	 */
-	SOURCE, TARGET,
+	SOURCE, TARGET
 }
